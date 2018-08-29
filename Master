@@ -1,0 +1,93 @@
+--Program Authored by Ian Galloway
+
+--CD set to Window 1 of Finder
+--Enter Folder Number
+--Enter SKU (with or without "UNIQ-"
+--Enter POP Number (Optional)
+--Select Number of folders to be generated
+--Violoa
+
+
+set folderNumber to display dialog "Next folder number:" default answer "" with icon note buttons {"Cancel", "Continue"} default button "Continue"
+set NextSku to display dialog "Next Sku:" default answer "" with icon note buttons {"Cancel", "Continue"} default button "Continue"
+set POPNumber to display dialog "POP #:" default answer "" with icon note buttons {"Continue"} default button "Continue"
+set SkuRange to display dialog "Is this a new SKU?" with icon note buttons {"Yes", "No"} default button "Yes"
+set SkuRangeAnswer to button returned of SkuRange
+display dialog SkuRangeAnswer
+
+
+if text returned of NextSku does not contain "UNIQ" then
+	
+	display dialog "Confirmed SKU: " & (text returned of folderNumber) & "_UNIQ-" & (text returned of NextSku) & "_C1_" & (text returned of POPNumber) & "." with icon note buttons {"Cancel", "Create"} default button "Create"
+	
+	if text returned of POPNumber is "" then
+		tell application "Finder"
+			set UNIQskuC to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_C1"}
+			set UNIQskuG to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_G1"}
+		end tell
+		
+		if SkuRangeAnswer (button returned is "Yes") then
+			tell application "Finder"
+				set UNIQskuD to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_D1"}
+				set UNIQskuE to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_E1"}
+				set UNIQskuF to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_F1"}
+				set UNIQskuL to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_L1"}
+			end tell
+			
+			
+		else
+			
+			tell application "Finder"
+				set UNIQskuCPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_C1_" & text returned of POPNumber}
+				set UNIQskuGPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_G1_" & text returned of POPNumber}
+			end tell
+			
+			if SkuRange is (button returned is "Yes") then
+				tell application "Finder"
+					set UNIQskuDPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_D1_" & text returned of POPNumber}
+					set UNIQskuEPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_E1_" & text returned of POPNumber}
+					set UNIQskuFPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_F1_" & text returned of POPNumber}
+					set UNIQskuLPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_UNIQ-" & text returned of NextSku & "_L1_" & text returned of POPNumber}
+				end tell
+				
+			end if
+			
+		end if
+		
+		display dialog "Confirmed SKU: " & (text returned of folderNumber) & (text returned of NextSku) & "_C1_" & (text returned of POPNumber) & "." with icon note buttons {"Cancel", "Create"} default button "Create"
+		
+		if text returned of POPNumber is "" then
+			tell application "Finder"
+				set skuC to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_C1"}
+				set skuG to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_G1"}
+				--end tell
+				
+				if SkuRange(button returned is "Yes") then
+					tell application "Finder"
+						
+						set skuD to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_D1"}
+						set skuE to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_E1"}
+						set skuF to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_CF"}
+						set skuL to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_L1"}
+					end tell
+				end if
+			--else	
+				
+			end tell
+			
+			tell application "Finder"
+				set skuCPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_C1_" & text returned of POPNumber}
+				set skuGPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_G1_" & text returned of POPNumber}
+			end tell
+			if SkuRange(button returned is "Yes") then
+				tell application "Finder"
+					set skuDPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_D1_" & text returned of POPNumber}
+					set skuEPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_E1_" & text returned of POPNumber}
+					set skuFPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_F1_" & text returned of POPNumber}
+					set skuLPOP to make new folder at window 1 with properties {name:text returned of folderNumber & "_" & text returned of NextSku & "_L1_" & text returned of POPNumber}
+				end tell
+			end if
+			
+		end if
+	end if
+end if
