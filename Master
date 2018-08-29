@@ -1,10 +1,10 @@
 --Program Authored by Ian Galloway
 
 --CD set to Window 1 of Finder
---Enter Folder Number
+--Propmpt for SKU
 --Enter SKU (with or without "UNIQ-"
 --Enter POP Number (Optional)
---Select Number of folders to be generated
+--Select Number of folders to be generated (previous or new item)
 --Violoa
 
 
